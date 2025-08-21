@@ -12,16 +12,12 @@
       padding: 0;
       background-color: #121212; /* fundo dark */
       color: #f5f5f5;
-    }
-    header {
-      background-color: #1e1e1e;
-      padding: 20px;
-    }
-    header img {
-      max-width: 200px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
     h2 {
-      margin-top: 20px;
+      margin: 30px 20px 20px;
       color: #ff6d00; /* laranja Exact Sales */
     }
     input, button {
@@ -85,13 +81,31 @@
       visibility: visible;
       opacity: 1;
     }
+    footer {
+      background-color: #fff;
+      color: #121212;
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+    }
+    footer img {
+      max-width: 180px;
+      margin-bottom: 15px;
+    }
+    footer p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+    footer a {
+      color: #ff6d00;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://images.sympla.com.br/65788d65f08ad-xs.png" alt="Exact Sales Logo">
-  </header>
-
   <h2>Conversor de Links Google Drive → Assinatura Spotter</h2>
   
   <input type="text" id="linkDrive" placeholder="Cole aqui o link do Google Drive">
@@ -101,6 +115,15 @@
   <div id="resultado"></div>
 
   <div id="toast">✅ Link copiado para a área de transferência!</div>
+
+  <footer>
+    <img src="https://images.sympla.com.br/65788d65f08ad-xs.png" alt="Exact Sales Logo">
+    <p><a href="https://www.exactsales.com.br/contato/" target="_blank">exactsales.com.br/contato</a></p>
+    <p>📞 +55 (48) 3025.7750</p>
+    <p>✉️ contato@exactsales.com.br</p>
+    <p><strong>Para suporte técnico referente ao Exact Spotter</strong></p>
+    <p>✉️ suporte@exactsales.com.br</p>
+  </footer>
 
   <script>
     function converter() {
