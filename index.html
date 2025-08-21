@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor de Links Google Drive</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      width: 80%;
+      max-width: 500px;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <h2>Conversor de Links Google Drive → Googleusercontent</h2>
+  
+  <input type="text" id="linkDrive" placeholder="Cole aqui o link do Google Drive">
+  <br>
+  <button onclick="converter()">Converter</button>
+  
+  <div id="resultado"></div>
+
+  <script>
+    function converter() {
+      let link = document.getElementById("linkDrive").value;
+      let match = link.match(/[-\w]{25,}/);
+      
+      if (match) {
+        let id = match[0];
+        let novoLink = "https://lh3.googleusercontent.com/d/" + id;
+        document.getElementById("resultado").innerHTML = 
+          `<p>✅ Link convertido:</p><a href="${novoLink}" target="_blank">${novoLink}</a>`;
+      } else {
+        document.getElementById("resultado").innerHTML = "⚠️ Link inválido!";
+      }
+    }
+  </script>
+</body>
+</html>
