@@ -21,6 +21,19 @@
       font-weight: bold;
       word-wrap: break-word;
     }
+    #copiarBtn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #copiarBtn:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
@@ -41,12 +54,21 @@
         let id = match[0];
         let novoLink = "https://lh3.googleusercontent.com/d/" + id;
         document.getElementById("resultado").innerHTML = 
-          `<p>✅ Link convertido:</p><a href="${novoLink}" target="_blank">${novoLink}</a>`;
+          `<p>✅ Link convertido:</p>
+           <a href="${novoLink}" target="_blank">${novoLink}</a><br>
+           <button id="copiarBtn" onclick="copiarLink('${novoLink}')">📋 Copiar</button>`;
       } else {
         document.getElementById("resultado").innerHTML = "⚠️ Link inválido!";
       }
     }
+
+    function copiarLink(texto) {
+      navigator.clipboard.writeText(texto).then(() => {
+        alert("✅ Link copiado para a área de transferência!");
+      }).catch(err => {
+        alert("Erro ao copiar: " + err);
+      });
+    }
   </script>
 </body>
 </html>
-
