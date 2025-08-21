@@ -8,13 +8,43 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      margin-top: 50px;
+      margin: 0;
+      padding: 0;
+      background-color: #121212; /* fundo dark */
+      color: #f5f5f5;
+    }
+    header {
+      background-color: #1e1e1e;
+      padding: 20px;
+    }
+    header img {
+      max-width: 200px;
+    }
+    h2 {
+      margin-top: 20px;
+      color: #ff6d00; /* laranja Exact Sales */
     }
     input, button {
-      padding: 10px;
-      margin: 5px;
+      padding: 12px;
+      margin: 8px;
       width: 80%;
       max-width: 500px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    input {
+      background-color: #2c2c2c;
+      color: #fff;
+    }
+    button {
+      background-color: #ff6d00;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #ff8c42;
     }
     #resultado {
       margin-top: 20px;
@@ -22,21 +52,46 @@
       word-wrap: break-word;
     }
     #copiarBtn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 12px;
-      background-color: #4CAF50;
-      color: white;
+      margin-top: 12px;
+      padding: 10px 14px;
+      background-color: #ffffff;
+      color: #121212;
+      font-weight: bold;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
+      transition: 0.3s;
     }
     #copiarBtn:hover {
-      background-color: #45a049;
+      background-color: #e0e0e0;
+    }
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 12px;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    #toast.show {
+      visibility: visible;
+      opacity: 1;
     }
   </style>
 </head>
 <body>
+  <header>
+    <img src="https://images.sympla.com.br/65788d65f08ad-xs.png" alt="Exact Sales Logo">
+  </header>
+
   <h2>Conversor de Links Google Drive → Assinatura Spotter</h2>
   
   <input type="text" id="linkDrive" placeholder="Cole aqui o link do Google Drive">
@@ -44,6 +99,8 @@
   <button onclick="converter()">Converter</button>
   
   <div id="resultado"></div>
+
+  <div id="toast">✅ Link copiado para a área de transferência!</div>
 
   <script>
     function converter() {
@@ -64,10 +121,16 @@
 
     function copiarLink(texto) {
       navigator.clipboard.writeText(texto).then(() => {
-        alert("✅ Link copiado para a área de transferência!");
+        mostrarToast();
       }).catch(err => {
-        alert("Erro ao copiar: " + err);
+        console.error("Erro ao copiar:", err);
       });
+    }
+
+    function mostrarToast() {
+      let toast = document.getElementById("toast");
+      toast.className = "show";
+      setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2000);
     }
   </script>
 </body>
